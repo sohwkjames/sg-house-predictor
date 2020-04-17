@@ -1,18 +1,16 @@
 from setup_package.databaseClass import Database
 from setup_package.apiClass import Api
 
-# Create the database. 
+# Create the sqlite3 database. 
 db = Database()
 db.create() # Column names are hardcoded. May need to enhance this method.
-#print("Database successfully created")
 
 # Pull data from data.gov.sg, populate database
-api = Api()
+api = Api(limit=70000)
 data = api.getRecords() # Returns a list of json.
-#print("data pulled from data.gov api")
-print("Testing db.insert()")
+
 db.insert(data)
-#print("Data successfully inserted into database")
+
 
 # Create predictions
 #model = Model()
