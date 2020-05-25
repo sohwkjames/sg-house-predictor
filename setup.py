@@ -24,4 +24,8 @@ if (model.prepData() == True):
     print("Data cleaning and preperation complete")
 if (model.trainModel() == True):
     print("Model fitted to pipeline.")
-model.getPickle()
+
+# Save a pickle of the pipeline to harddisk.
+model.saveModelAsPickle()
+# Save a copy of DF after clean and feature engineering.
+model.saveCleanedDataAsPickle()

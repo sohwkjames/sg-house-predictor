@@ -8,6 +8,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.preprocessing import StandardScaler
+import joblib
 
 class Model():
 
@@ -15,6 +16,7 @@ class Model():
         ## Attributes
         self.df = None    # Holds the entire df in memory.
         self.pipeline = None    # Holds a sklearn pipeline object.
+        self.cleaned_columns_X = None
         print("Initialised model object")
 
 
@@ -106,4 +108,10 @@ class Model():
 
     def saveModelAsPickle(self):
         joblib.dump(self.pipeline, 'sg_housing_pipe.pkl')
-        return 0
+        return True
+
+    def saveCleanedDataAsPickle(self):
+        '''Call this method after cleaning data to generate a picle of DF.
+        Pickled DF can be used for reference for creating inputs for prediction.'''
+        joblib.dump(self.df, 'cleaned_data.pkl')
+        return True
